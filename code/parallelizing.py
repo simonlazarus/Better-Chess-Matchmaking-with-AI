@@ -123,12 +123,29 @@ def process_game(sf_num, game_num):
         moves_dict[i]['fen'] = str(fen)
         
         #If this is the new player's turn, also get the top 10 moves
-        if (i%2 == 0 and new_player_type == 'white') or (i % 2 == 1 and new_player_type == 'black'):
+        if (i%2 == 0 and new_player_type == 'white') or (i%2 == 1 and new_player_type == 'black'):
             moves_dict[i]['top_10'] = sf.get_top_moves(10)
         
         #Finally, make the move that was actually played
         board.push_san(move)
     
+
+    #Also evaluate the final position of the game
+    #(recall that we have already pushed the last move at this point)
+    fen = board.fen()
+    sf.set_fen_position(fen)
+
+    #Store the final position's FEN string and evaluation in the dictionary
+    moves_dict[len(moves)] = {}
+    moves_dict[len(moves)]['fen'] = fen
+    moves_dict[len(moves)]['eval'] = sf.get_evaluation()
+
+    #Store the top 10 moves, if it's the new player's turn
+    #If the game didn't end in a concession, this might return an empty list.
+    if (len(moves)%2 == 0 and new_player_type == 'white') or (len(moves)%2 == 1 and new_player_type == 'black'):
+        moves_dict[len(moves)]['top_10'] = sf.get_top_moves(10)
+
+
     end = time.time()
     
     print(end-start)
