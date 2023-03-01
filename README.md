@@ -6,13 +6,20 @@ Considering the 2-week timeframe of this project and the heavy computational res
 Our production model makes significant improvements upon widely-used existing models.  Its prediction accuracy is (PUT NUMBERS HERE) which improves upon the widely used Glicko and Elo models - used by Lichess, the International Chess Federation, and other organizations - by (PUT NUMBERS HERE).  More importantly, our model's *probabilistic* predictions have lower Binary Cross-Entropy (BCE) loss than those made by the Elo model and a simple variant of the Glicko model[^1]: (PUT NUMBERS HERE).  Since the aim of good chess matchmaking is to pair together players into matches where neither player has an overwhelming probability of winning, getting *probabilistic* predictions with low BCE loss is essential.
 
 
-[^1]: It was not possible to precisely reconstruct the probabilistic predictions of Lichess's Glicko model with the data they provide, so our comparison is to a simpler Glicko-like model's probabilistic predictions.  If the necessary data were available to incorporate into a Glicko model, we could also incorporate these data into a better production model and would likely still see an improvement.
+[^1]: It was not possible to precisely reconstruct the probabilistic predictions of Lichess's Glicko model with the data they provide, so our comparison is to a simpler Glicko-like model's probabilistic predictions.  If the necessary data were available to incorporate into a Glicko model, we could also incorporate these data into a better production model and would likely still see an improvement from incorporating our new techniques.
 
 
 
 # Background
 [Deloitte/FIDE Chess Rating Challenge](https://www.kaggle.com/c/ChessRatings2/overview/custom)
 
+# Room for improvement / future work
+- Use more than 1 past game
+- Improvement amount over outcomes-based systems like Glicko is likely to decrease as the new player plays more games (the average of outcomes of *many* games is almost as predictive as those plus the moves made)
+- 20ths of the game rather than 10ths?
+
+# Business stuff
+Why look at only the new player's games? (Save computational resources)
 
 
 # Instructions to Replicate this Project
