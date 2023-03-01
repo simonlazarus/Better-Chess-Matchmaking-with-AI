@@ -22,7 +22,7 @@ There have been several attempts at improving rating/prediction models.  The [De
 [^1]: Technically it ranked models on the basis of their [Binomial Deviance](https://stats.stackexchange.com/questions/371476/calculate-binomial-deviance-binomial-log-likelihood-in-the-test-dataset) from the true outcomes, but this is just a constant times BCE loss.
 
 
-# Data
+# Data & Methods
 
 We use [all the games played on Lichess.org in July of 2016](https://www.kaggle.com/datasets/arevel/chess-games).  From these data, we determine who the *new players* are by finding players whose rating at the start of their first game of the month was exactly 1500 (the starting rating on Lichess).  We perform various data-cleaning tasks described in notebook [01](./code/01_data_processing.ipynb), such as dropping games that last fewer than 10 moves (i.e. 5 moves per player).  Then for each new player, we extract the following games:
 
